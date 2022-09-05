@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:smart_home/SensorScreen/components/custom_card.dart';
 import '../../constants.dart';
 import 'dart:async';
-import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 class SensorScreenBody extends StatefulWidget {
@@ -258,10 +257,8 @@ class _SensorScreenBodyState extends State<SensorScreenBody> {
 
   Future loadData() async {
     String jsonString = await getJsonFromFirebaseRestAPI();
-    final jsonResponse = json.decode(jsonString);
     setState(() {
-      for (Map<String, dynamic> i in jsonResponse) {
-        if (i.toString() == '{month: Jan, sales: 35}' || i.toString() == '{month: Apr, sales: 32}') {
+        if (jsonString== "\"motion detected\"") {
           showDialog<String>(
             context: context,
             builder: (BuildContext context) => AlertDialog(
@@ -275,9 +272,8 @@ class _SensorScreenBodyState extends State<SensorScreenBody> {
               ],
             ),
           );
-          return;
         }
-      }
+
 
     });
   }
@@ -290,7 +286,7 @@ class _SensorScreenBodyState extends State<SensorScreenBody> {
 }
 
 Future<String> getJsonFromFirebaseRestAPI() async {
-  String url = 'https://flutterdemo-f6d47.firebaseio.com/chartSalesData.json';
+  String url = 'https://iot-home-security-5265f-default-rtdb.firebaseio.com/status.json';
   http.Response response = await http.get(Uri.parse(url));
   return response.body;
 }
