@@ -67,7 +67,7 @@ class _SensorScreenBodyState extends State<SensorScreenBody> {
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(20),
                       child: Image.asset(
-                        "assets/images/profile_picture.jpg",
+                        "assets/images/profile_picture.jpeg",
                         fit: BoxFit.cover,
                       ),
                     ),
@@ -84,7 +84,7 @@ class _SensorScreenBodyState extends State<SensorScreenBody> {
                         ),
                       ),
                       Text(
-                        'Good Morning,\nMichael',
+                        'Good Morning,\nSherlock!',
                         style: TextStyle(
                           color: Colors.black87,
                           fontWeight: FontWeight.bold,
